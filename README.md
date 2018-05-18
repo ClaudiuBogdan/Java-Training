@@ -1,10 +1,10 @@
 # Java, Indonesia
 
-## Books:
+## Hotspots:
   ### Programming fundamentals:
-  * [Big Java: Early Objects](https://www.amazon.com/Big-Java-Early-Objects-6th-ebook/dp/B01AKSZ8XA)
+  * [Big Java: Early Objects](https://github.com/ClaudiuBogdan/Java-Training/tree/master/Programming_fundamentals/Big_Java_Early_Objects)
   
-  ### Algotith and Data Structure:
+  ### Algorithm and Data Structure:
   * [Data Structures and Algorithm Analysis in Java](https://www.amazon.com/Data-Structures-Algorithm-Analysis-Java/dp/0132576279)
   
   ### Language specific:
