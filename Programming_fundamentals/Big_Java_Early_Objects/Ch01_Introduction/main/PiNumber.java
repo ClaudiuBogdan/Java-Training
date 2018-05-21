@@ -41,7 +41,7 @@ public class PiNumber {
     }
 
     public void setPi(int precision){
-        this.pi = calculatePi(precision);;
+        this.pi = calculatePi(precision);
     }
 
     public double getPi() {
