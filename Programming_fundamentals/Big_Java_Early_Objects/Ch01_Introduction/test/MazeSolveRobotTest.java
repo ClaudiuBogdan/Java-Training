@@ -2,7 +2,8 @@
 import com.mazze.rubicon.maze.GenerateMaze;
 import org.junit.Test;
 
-import java.awt.Point;
+import java.awt.*;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -41,6 +42,18 @@ public class MazeSolveRobotTest {
         }
         MazeSolveRobot robot = new MazeSolveRobot(maze,wall_id,entryPosition,exitPosition);
         robot.solveMaze();
+
+        List<Point> path = robot.getRobotPath();
+        System.out.println();
+        for(Point point:path){
+            maze[(int) point.getX()][(int) point.getY()] = maze[(int) point.getX()][(int) point.getY()] + 3;
+        }
+        for(int i = 0; i<maze[0].length; i++){
+            for(int j=0; j<maze.length; j++){
+                System.out.print(maze[j][i]);
+            }
+            System.out.println();
+        }
 
     }
 }

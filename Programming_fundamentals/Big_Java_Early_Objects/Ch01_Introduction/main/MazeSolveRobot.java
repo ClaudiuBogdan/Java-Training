@@ -20,6 +20,8 @@ import java.util.List;
 public class MazeSolveRobot {
     private int[][] maze;
     private Point mRobotPosition;
+    private Point frontPosition;
+    private Point rightPosition;
     private final int WALL_ID;
     private Point mExitPosition;
     private List<Point> robotPath = new ArrayList<Point>();
@@ -46,21 +48,46 @@ public class MazeSolveRobot {
      */
     public void solveMaze(){
         /*
-        1. if forward isNotWall
-            1.1 Move forward
-            1.2 if position is exit
-                    STOP
-                else GoTo 1
-        2. else turn right
-                GoTo 1
+        1. if currentPosition equal exitPosition
+            1.1. EXIT
+        2. if forward isn't wall
+            2.2 Turn right and look if is not wall
+            2.3 If is not wall move forward
+            2.4 Else turn left and move forward
+        3. Turn right and see if is wall
+            3.1 If is wall, turn left twice and see if isn't wall
+            3.2 If isn't wall, move forward
+            3.3 Else turn left and move forward
+        4. Go to 1
+
          */
+        moveForward(); //Make the first move to enter the maze
         while(!mRobotPosition.equals(mExitPosition)){
-            int forward_ID = detectForwardPosition();
-            if(forward_ID != WALL_ID){
+            int forward_id = detectForwardPosition();
+            if(forward_id != WALL_ID){
+                turnRight(); //Turn right to detect path available.
+                int right_id = detectForwardPosition();
+                if(right_id == WALL_ID ){
+                    turnLeft();
+                }
                 moveForward();
             }
             else{
                 turnRight();
+                int right_id = detectForwardPosition();
+                if(right_id == WALL_ID ){
+                    turnLeft();
+                    turnLeft();
+                }
+                forward_id = detectForwardPosition();
+                if (forward_id != WALL_ID){
+                    moveForward();
+                }
+                else {
+                    turnLeft();
+                    moveForward();
+                }
+
             }
         }
 
@@ -91,7 +118,17 @@ public class MazeSolveRobot {
         direction++;
         if(direction > LEFT)
             direction = UP;
+        setNewMoveDirection();
+    }
 
+    private void turnLeft() {
+        direction--;
+        if(direction < UP)
+            direction = LEFT;
+        setNewMoveDirection();
+    }
+
+    private void setNewMoveDirection(){
         //Set new dx, dy to the new direction
         switch (direction){
             case UP: dx = 0; dy = -1; break;
@@ -102,4 +139,7 @@ public class MazeSolveRobot {
         }
     }
 
+    public List<Point> getRobotPath() {
+        return robotPath;
+    }
 }
