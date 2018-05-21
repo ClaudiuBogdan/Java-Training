@@ -5,6 +5,7 @@
       <sourceFolder url="file://$MODULE_DIR$/Ch01_Introduction/main" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Ch01_Introduction/test" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/Ch01_Introduction/res" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Ch02_Using_Objects/main" isTestSource="false" />
     </content>
     <orderEntry type="jdk" jdkName="1.8" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />

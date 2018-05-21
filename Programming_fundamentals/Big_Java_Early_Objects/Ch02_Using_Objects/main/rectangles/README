@@ -1,0 +1,14 @@
+# Project 2.4 (page74)
+The intersection method computes the intersection of two rectangles—that is, the
+rectangle that would be formed by two overlapping rectangles if they were drawn, as
+shown at right.
+You call this method as follows: <br>
+Rectangle r3 = r1.intersection(r2); <br>
+Write a program IntersectionPrinter that constructs two rectangle objects, prints them as described in Exercise P2.1,
+and then prints the rectangle object that describes the intersection. Then the program should print the result of the
+intersection method when the rectangles do not overlap. Add a comment to your program that explains how you can
+tell whether the resulting rectangle is empty
+
+## Solution
+
+I'm not going to solve the project the way the book is asking me to solve, but what I'm going to do is create an animation that show the intersection of two rectangles in movement. It would be fun to make the project with three moving rectangle and the drawing the intersection.

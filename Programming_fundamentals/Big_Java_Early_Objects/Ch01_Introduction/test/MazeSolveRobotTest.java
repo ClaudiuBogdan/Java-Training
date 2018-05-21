@@ -25,7 +25,7 @@ public class MazeSolveRobotTest {
         thirdPoint.translate(0,-1);
         assertTrue(fourthPoint.equals(thirdPoint));
 
-        GenerateMaze generateMaze = new GenerateMaze(5,3,2,2);
+        GenerateMaze generateMaze = new GenerateMaze(10,15,2,2);
         Point entryPosition = new Point(generateMaze.getENTRY_POSITION().getHorizontalPosition(),
                                 generateMaze.getENTRY_POSITION().getVerticalPosition());
         Point exitPosition = new Point(generateMaze.getEXIT_POSITION().getHorizontalPosition(),
