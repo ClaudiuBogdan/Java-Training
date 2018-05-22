@@ -1,0 +1,14 @@
+# Project 4.3 (page171)
+
+In this project, you will perform calculations with triangles. A triangle is defined by
+the x- and y-coordinates of its three corner points. <br>
+Your job is to compute the following properties of a given triangle:
+* the lengths of all sides
+* the angles at all corners
+* the perimeter
+* the area 
+<br>
+
+Implement a Triangle class with appropriate methods. Supply a program that
+prompts a user for the corner point coordinates and produces a nicely formatted
+table of the triangle properties.
