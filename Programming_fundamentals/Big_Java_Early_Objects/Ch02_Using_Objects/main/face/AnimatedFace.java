@@ -49,9 +49,9 @@ public class AnimatedFace {
             int y = 0;
             int rectwidth = 300;
             int rectheight = rectwidth/2;
-            g2.setColor(Color.ORANGE);
 
             //Draw face skin
+            g2.setColor(Color.ORANGE);
             Ellipse2D faceBorder = face.getFaceBorder();
             g2.fill(faceBorder);
 
