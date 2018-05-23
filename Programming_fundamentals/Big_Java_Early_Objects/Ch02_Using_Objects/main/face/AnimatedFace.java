@@ -60,7 +60,7 @@ public class AnimatedFace {
             Arc2D arc2D = face.getMouthBorder();
             g2.fill(arc2D);
             g2.setColor(Color.RED);
-            g2.fill(face.getTongueBorer());
+            g2.fill(face.getTongueBorder());
 
             //Draw eyes border end iris.
             g2.setColor(Color.WHITE);
@@ -82,11 +82,12 @@ public class AnimatedFace {
             if (closingEye){
                 closingEye = face.closeEye(face.getRightEyeBorder());
                 face.closeEye(face.getRightEyeIris());
+                face.closeMouth();
                 face.openTongue();
                 if(!closingEye){
                     try {
                         face.openTongue();
-                        Thread.sleep(300);
+                        Thread.sleep(800);
                     }
                     catch (InterruptedException ex){
 
@@ -96,6 +97,7 @@ public class AnimatedFace {
             else{
                 closingEye = !face.openEye(face.getRightEyeBorder());
                 face.openEye(face.getRightEyeIris());
+                face.openMouth();
                 face.closeTongue();
                 if(closingEye){
                     try {
@@ -133,7 +135,8 @@ public class AnimatedFace {
         private Ellipse2D faceBorder;
         private Arc2D mouthBorder;
         private Point centerMouth;
-        private Arc2D tongueBorer;
+        private double mouthHigh;
+        private Arc2D tongueBorder;
         private double tongueHigh;
         private Ellipse2D rightEyeBorder;
         private Ellipse2D leftEyeBorder;
@@ -178,14 +181,15 @@ public class AnimatedFace {
          */
         private void setMouth(){
             centerMouth = new Point((int) faceCenter.getX(), (int)(faceCenter.getY() + dimension / 2.0));
+            mouthHigh = dimension/2;
             mouthBorder= new Arc2D.Double(centerMouth.getX() - dimension/3, centerMouth.getY()-dimension/2,
                     dimension/1.5,
-                    dimension/2,
+                    mouthHigh,
                     0, -180,
                     Arc2D.CHORD);
             int scaleFactor = 4;
             tongueHigh = dimension;
-            tongueBorer = new Arc2D.Double(centerMouth.getX() - dimension/scaleFactor, mouthBorder.getY() - dimension/4,
+            tongueBorder = new Arc2D.Double(centerMouth.getX() - dimension/scaleFactor, mouthBorder.getY() - dimension/4,
                     2*dimension/(scaleFactor),
                     dimension,
                     0, -180,
@@ -239,12 +243,12 @@ public class AnimatedFace {
 
         public boolean closeTongue(){
 
-            if(tongueBorer.getHeight() > 0){
-                double decreaseTongueHigh = tongueBorer.getHeight();
+            if(tongueBorder.getHeight() > 0){
+                double decreaseTongueHigh = tongueBorder.getHeight();
                 decreaseTongueHigh -=  tongueHigh/eyeHigh;
                 decreaseTongueHigh = decreaseTongueHigh < 0 ? 0 : decreaseTongueHigh;
-                tongueBorer = new Arc2D.Double(tongueBorer.getX(), tongueBorer.getY()  + tongueHigh/(eyeHigh *2.0) ,
-                        tongueBorer.getWidth(),
+                tongueBorder = new Arc2D.Double(tongueBorder.getX(), tongueBorder.getY()  + tongueHigh/(eyeHigh *2.0) ,
+                        tongueBorder.getWidth(),
                         decreaseTongueHigh,
                         0, -180,
                         Arc2D.CHORD);
@@ -255,12 +259,42 @@ public class AnimatedFace {
 
         public boolean openTongue(){
 
-            if(tongueBorer.getHeight() < tongueHigh){
-                double increaseTongueHigh = tongueBorer.getHeight();
+            if(tongueBorder.getHeight() < tongueHigh){
+                double increaseTongueHigh = tongueBorder.getHeight();
                 increaseTongueHigh +=  tongueHigh/eyeHigh;
-                tongueBorer = new Arc2D.Double(tongueBorer.getX(), tongueBorer.getY() - tongueHigh/(eyeHigh *2.0),
-                        tongueBorer.getWidth(),
+                tongueBorder = new Arc2D.Double(tongueBorder.getX(), tongueBorder.getY() - tongueHigh/(eyeHigh *2.0),
+                        tongueBorder.getWidth(),
                         increaseTongueHigh,
+                        0, -180,
+                        Arc2D.CHORD);
+                return true;
+            }
+            return false;
+        }
+
+        //This method is duplicated code and can be simplified into a general method that close eye, tongue and mouth.
+        public boolean closeMouth(){
+            if(mouthBorder.getHeight() > 0){
+                double decreaseMouthHigh = mouthBorder.getHeight();
+                decreaseMouthHigh -=  mouthHigh/eyeHigh;
+                decreaseMouthHigh = decreaseMouthHigh < 0 ? 0 : decreaseMouthHigh;
+                mouthBorder = new Arc2D.Double(mouthBorder.getX(), mouthBorder.getY()  + mouthHigh/(eyeHigh *2.0) ,
+                        mouthBorder.getWidth(),
+                        decreaseMouthHigh,
+                        0, -180,
+                        Arc2D.CHORD);
+                return true;
+            }
+            return false;
+        }
+
+        public boolean openMouth(){
+            if(mouthBorder.getHeight() < mouthHigh){
+                double increaseMouthHigh = mouthBorder.getHeight();
+                increaseMouthHigh +=  mouthHigh/eyeHigh;
+                mouthBorder = new Arc2D.Double(mouthBorder.getX(), mouthBorder.getY() -  mouthHigh/(eyeHigh *2.0),
+                        mouthBorder.getWidth(),
+                        increaseMouthHigh,
                         0, -180,
                         Arc2D.CHORD);
                 return true;
@@ -292,8 +326,8 @@ public class AnimatedFace {
             return leftEyeIris;
         }
 
-        public Arc2D getTongueBorer() {
-            return tongueBorer;
+        public Arc2D getTongueBorder() {
+            return tongueBorder;
         }
     }
 }
