@@ -12,6 +12,8 @@
       <sourceFolder url="file://$MODULE_DIR$/Ch04_Fundamental_Data_Types/main" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Ch06_Loops/main" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Ch06_Loops/test" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/Ch07_Arrays_and_Array_Lists/main" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Ch07_Arrays_and_Array_Lists/test" isTestSource="true" />
     </content>
     <orderEntry type="jdk" jdkName="1.8" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
