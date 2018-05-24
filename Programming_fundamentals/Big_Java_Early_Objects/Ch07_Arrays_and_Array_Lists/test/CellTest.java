@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import static org.junit.Assert.*;
 
@@ -29,16 +30,19 @@ public class CellTest {
 
     @Test
     public void testCellColony(){
+        Random random = new Random();
         List<Cell> cellsColony = new ArrayList<>();
         matrixOfCells = new int[8][8];
         for(int i = 1; i<matrixOfCells.length - 1; i++){
             for(int j = 1; j<matrixOfCells[0].length - 1; j++){
-                cellsColony.add(new Cell(j,i,matrixOfCells, LiveState.DEAD));
+                LiveState[] states = {LiveState.ALIVE, LiveState.DEAD};
+                int randomIndexState = random.nextInt(2);
+                cellsColony.add(new Cell(j,i,matrixOfCells, states[randomIndexState]));
             }
         }
         int numOfAliveCells = 6;
         for(int i = 0; i<numOfAliveCells; i++){
-            cellsColony.get(i).changeStateTo(LiveState.ALIVE);
+            //cellsColony.get(i).changeStateTo(LiveState.ALIVE);
         }
         displayMatrix();
         nextGenerationOfColony(cellsColony);
