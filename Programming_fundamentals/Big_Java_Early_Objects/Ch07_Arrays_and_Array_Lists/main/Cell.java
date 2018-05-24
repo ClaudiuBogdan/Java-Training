@@ -92,4 +92,8 @@ public class Cell extends Point {
         return neighbourCells;
 
     }
+
+    public LiveState getCell_state() {
+        return cell_state;
+    }
 }
