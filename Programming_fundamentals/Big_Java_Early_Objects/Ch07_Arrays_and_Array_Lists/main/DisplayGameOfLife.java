@@ -23,7 +23,7 @@ public class DisplayGameOfLife {
         while (true){
             cellColony.nextGenerationOfColony();
             try {
-                Thread.sleep(50);
+                Thread.sleep(500);
             }
             catch (InterruptedException ex){}
             frame.repaint();
