@@ -55,4 +55,4 @@
 ##### Describe the heapsort algorithm and its run-time performance.
 * The heapsort algorithm is based on inserting elements into a heap and removing
   them in sorted order.
-* Heapsort is an O(n log(n)) algorithm.
+* Heapsort is an O(n log(n)) algorithm. 
